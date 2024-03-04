@@ -6,8 +6,8 @@
 
 </head>
 <body>
-<p>Are you sure you want to delete "{{ task.title }}"</p>
-<form action="{% url 'task_delete' task.id %}" method="post">
+   <p>Are you sure you want to delete "{{ task.title }}"</p>
+   <form action="{% url 'task_delete' task.id %}" method="post">
     {% csrf_token %}
     <button type="submit">Delete</button>
 
@@ -15,7 +15,7 @@
 
 
 
-</form>
-<a href="{% url 'task_detail' task.id %}">Cancel</a>
+   </form>
+   <a href="{% url 'task_detail' task.id %}">Cancel</a>
 </body>
 </html>

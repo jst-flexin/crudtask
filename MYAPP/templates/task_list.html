@@ -5,18 +5,18 @@
     <title>Tasklist</title>
 </head>
 <body>
-<h1>TaskList</h1>
-<ul>
-   {% for task in tasks %}
-       <li><a href="{% url 'task_detail ' task.id %}">{{ task.title }}</a></li>
-    {% endfor %}
+   <h1>TaskList</h1>
+    <ul>
+        {% for task in tasks %}
+       <li><a href="{% url 'task_detail' task.id %}">{{ task.title }}</a></li>
+        {% endfor %}
 
 <li><a href="{% url 'task_create' %}">Create New Task</a></li>
 
 
 
 
-</ul>
+    </ul>
 
 
 

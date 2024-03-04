@@ -5,14 +5,16 @@
     <title></title>
 </head>
 <body>
-<h1>Task Details</h1>
-<p>Title : {{ task.title }}</p>
-<p>Description: {{ task.description }} </p>
-<p>Completed: {{ task.completed }}</p>
-<p>Created at: {{ task.created_at }}</p>
-<a href="{% url  'task_edit' task.id %} ">Edit</a>
-<form action="{% url 'task_delete' %}" method="post"></form>
-{% csrf_token %}
-<button type="submit">Delete</button>
+    <h1>Task Details</h1>
+    <p>Title : {{ task.title }}</p>
+    <p>Description: {{ task.description }} </p>
+    <p>{% if task.completed %}Yes{% else %}No{% endif %}</p>
+    <p>Created at: {{ task.created_at }}</p>
+    <a href="{% url  'task_edit' task.id %} ">Edit</a>
+    <form action="{% url 'task_delete' task.id %}" method="post">
+      {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'task_list' %}">Back to List</a>
 </body>
 </html>

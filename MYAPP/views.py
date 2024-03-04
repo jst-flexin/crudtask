@@ -14,15 +14,15 @@ def task_detail(request, id):
     return render(request, 'task_details.html', {'task': task})
 
 
-def task_create(request,id):
+def task_create(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('fff')
-        else:
-            form = TaskForm()
-        return render(request, 'task_form.html', {'form': form})
+            return redirect('task_list')
+    else:
+        form = TaskForm()
+    return render(request, 'task_form.html', {'form': form})
 
 
 def task_edit(request, id):
@@ -31,18 +31,18 @@ def task_edit(request, id):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('task_edit')
+            return redirect('task_detail')
 
-        else:
-            form = TaskForm(instance=task)
-        return render(request, 'task_form.html', {'form': form})
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'task_form.html', {'form': form})
 
 
 def task_delete(request):
     task = get_object_or_404(Task, id=id)
     if request.method == 'POST':
         task.delete()
-        return redirect('task_delete')
+        return redirect('task_list')
     else:
         task = TaskForm(instance=task)
     return render(request, 'task_confirm_delete.html', {'task': task})
